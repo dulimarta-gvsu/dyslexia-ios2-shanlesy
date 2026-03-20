@@ -8,21 +8,74 @@
 import SwiftUI
 
 struct GameDetailsView: View {
-    private var onBack: () -> Void
-    init(onBack: @escaping () -> Void) {
-        self.onBack = onBack
-    }
+    var game: Int
+    var word: String
+    var points: Int
+    var moves: Int
+    var time: Int
+    var onBack: () -> Void
+
     var body: some View {
-        Text("This is the Detail Screen")
-        VStack {
-            Button("Back") {
-                self.onBack()
+        VStack(alignment: .center) {
+            // Header Row
+            HStack {
+                Button("Back") {
+                    onBack()
+                }
+                Spacer()
+                Text("Game Details")
             }
+            .padding(.horizontal)
+
+            // Game Info Rows
+            HStack {
+                Text("Game \(game + 1)")
+                Spacer()
+            }
+            .padding(.horizontal)
+
+            HStack {
+                Text("Word: \(word)")
+                Spacer()
+            }
+            .padding(.horizontal)
+
+            HStack {
+                Text("Points: \(points)")
+                Spacer()
+            }
+            .padding(.horizontal)
+
+            HStack {
+                Text("Moves: \(moves)")
+                Spacer()
+            }
+            .padding(.horizontal)
+
+            HStack {
+                Text("Time: \(time)")
+                Spacer()
+            }
+            .padding(.horizontal)
+
+            Spacer()
         }
-        .padding()
+        .padding(.vertical, 50)
     }
 }
 
-#Preview {
-    //GameDetailsView(onBack: <#T##() -> Void#>)
+// MARK: - Preview
+struct GameDetailsView_Previews: PreviewProvider {
+    static var previews: some View {
+        GameDetailsView(
+            game: 1,
+            word: "pikachu",
+            points: 10,
+            moves: 10,
+            time: 10,
+            onBack: {}
+        )
+    }
 }
+
+

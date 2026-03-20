@@ -17,18 +17,18 @@ struct MainView: View {
                     onSettings: { navCtrl.navigate(to: .SettingsView)})
                 .navigationDestination(for: Route.self) { dest in
                     switch dest {
-                        case .GameHistoryView:
-                            GameHistoryView() {
-                                navCtrl.navigateBack()
-                            } onDetails: {
-                                navCtrl.navigate(to: .GameDetailsView)
-                            }
-                        case .GameDetailsView:
-                            GameDetailsView() {
+                    case .GameHistoryView:
+                        GameHistoryView(viewModel: vm) { index, word, points, moves, time in
+                            navCtrl.navigate(to: .GameDetailsView(game: index, word: word, points: points, moves: moves, time: time))
+                        } onBack: {
+                            navCtrl.navigateBack()
+                        }
+                        case .GameDetailsView(let game, let word, let points, let moves, let time):
+                            GameDetailsView(game: game, word: word, points: points, moves: moves, time: time) {
                                 navCtrl.navigateBack()
                             }
                         case .SettingsView:
-                            SettingsView() {
+                            SettingsView(viewModel: vm) {
                                 navCtrl.navigateBack()
                             }
                         }

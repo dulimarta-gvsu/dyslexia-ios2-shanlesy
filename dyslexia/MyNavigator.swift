@@ -15,7 +15,13 @@ enum Route: Hashable {
     //case SelectPaymentMethod(totalCharge: Float)
     //case Checkout
     case GameHistoryView
-    case GameDetailsView
+    case GameDetailsView(
+        game: Int,
+        word: String,
+        points: Int,
+        moves: Int,
+        time: Int
+    )
     case SettingsView
 }
 

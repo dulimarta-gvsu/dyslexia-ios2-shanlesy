@@ -27,13 +27,14 @@ class AppViewModel: ObservableObject {
     ]
 
     // MARK: - Data Models
-    struct WordRecord {
-        let word: String
-        let points: Int
-        let moves: Int
-        let seconds: Int
-        let index: Int
-        let complete: Bool
+    struct WordRecord: Identifiable {
+        var id: Int { index }
+        var index: Int
+        var word: String
+        var points: Int
+        var moves: Int
+        var seconds: Int
+        var complete: Bool
     }
 
     struct Letter {
@@ -92,11 +93,11 @@ class AppViewModel: ObservableObject {
     func selectNewWord() {
         if !isComplete {
             gameHistory.append(WordRecord(
+                index: gameHistory.count,
                 word: selectedWord,
                 points: wordScore,
                 moves: moves,
                 seconds: seconds,
-                index: gameHistory.count,
                 complete: false
             ))
         }
@@ -153,11 +154,11 @@ class AppViewModel: ObservableObject {
             gameTotal += wordScore
             finalTime = seconds
             gameHistory.append(WordRecord(
+                index: gameHistory.count,
                 word: selectedWord,
                 points: wordScore,
                 moves: moves,
                 seconds: finalTime,
-                index: gameHistory.count,
                 complete: true
             ))
         }
