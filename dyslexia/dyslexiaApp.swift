@@ -1,6 +1,9 @@
 //
 //  dyslexiaApp.swift
 //  dyslexia
+//
+//  Created by Synjin J. Shanley on 2/26/26.
+//
 
 import SwiftUI
 
@@ -8,8 +11,7 @@ import SwiftUI
 struct dyslexiaApp: App {
     var body: some Scene {
         WindowGroup {
-            let viewModel = AppViewModel()
-            ContentView(viewModel: viewModel)
+            MainView()
         }
     }
 }
